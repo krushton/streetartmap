@@ -10,6 +10,13 @@ body {
 	font-size:12px;
 	font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
+h1,h2,h3,h4,h5,h6 {
+	/* font-family:'Londrina Outline'; */
+	/* font-family:'Bangers'; */
+	/* font-family:'Audiowide'; */
+
+	font-family: 'Wallpoet';
+}
 
 header {
 	background-color:#495e6b;
@@ -20,24 +27,52 @@ header {
 }
 
 header h1 {
-	/* font-family:'Londrina Outline'; */
-	/* font-family:'Bangers'; */
-	/* font-family:'Audiowide'; */
-
-	font-family: 'Wallpoet';
 	font-size:48px;
 }
 
-#wrapper {
-	width: 80%;
+iframe {
+	position:relative;
+	width:1000px;
+	height:1000px;
+	top:-240px;
+	left:-30px;
+}
+
+.box {
 	height:100%;
 	border:10px solid #FFF;
-	height:100%;
-	margin: 0 auto;
-	margin-top:10px;
+	position:absolute;
+	top:10px;
+	
+}
+
+.window {
+	width: 400px; 
+	height: 400px; 
+	overflow: hidden;
+}
+
+#wrapper {
+	width: 65%;
+	left:10px;
 	background-color:#FFF;
 	box-shadow: 10px 10px 5px #000;
 }
+
+#sidebar {
+	width:30%;
+	right:10px;
+	background-color:#FFF;
+}
+
+#sidebar-header {
+	width:95%;
+	height:60px;
+	padding:10px;
+	color:#FFF;
+	background-color:#495e6b;
+}
+
 
 #map-canvas {
 	width:100%;
