@@ -120,3 +120,9 @@ input[type="radio"]+label{
 	margin-top: 20px;
 }
 
+.filter-background {
+	background: #ECF1EF;
+	padding: 5px 0px 5px 0px;
+	margin: 5px 0px 5px 0px;
+}
+
