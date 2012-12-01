@@ -5,11 +5,12 @@ $(document).ready(function() {
 	//loadMuralData();
 
 	/*             EVENT HANDLERS                  */
-	$('#hide-sidebar').click(function() {
-
+	$('#hide-sidebar').bind('click', function() {
+		console.log('click');
 		if ( $(this).data('hidden') == "true" ) {
 			$('#filter-content').show();
 			$(this).attr('src', 'css/hide.png');
+			$(this).data('hidden', 'false');
 		} else {
 			$('#filter-content').hide();
 			$(this).attr('src', 'css/show.png');
