@@ -22,83 +22,84 @@
 </head>
 
 <body>
-  <div id="wrapper" class="box">
-       <div id="content">        
-          <header>
-            <div id="logo" class="floatLeft">
-                <h1>SF Street Art Map</h1>
-            </div>
-          </header>
-          <div class="art-selectors">
-            <input class="selector-button" type="button" id="graffiti-button" value="Graffiti" />
-            <input class="selector-button" type="button" id="mural-button" value="Mural Art" />
-            <input class="selector-button" type="button" id="income-button" value="Income" />
-            <div class="show-filter">
-              <button id="show-filter-button" state="show">Show Filters</button>
-            </div>
-          </div>
-          <div id="main">
-            <div id="map-canvas">
-            </div>
-          </div>
-        </div>
-  </div>
-  <div id="sidebar" class="box">
-    <div id="sidebar-header">
-      <h1>Filters</h1>
+  <div id="wrapper">  
+    <header>
+      <div id="logo">
+        <h1>SF Street Art Map</h1>
+      </div>
+    </header>
+
+    <div id="toggle" class="art-selectors">
+      <input class="selector-button" type="button" id="graffiti-button" value="Graffiti" />
+      <input class="selector-button" type="button" id="mural-button" value="Mural Art" />
+      <input class="selector-button" type="button" id="income-button" value="Income" />
     </div>
-    <div id="filter-section">
-      <div id="filters-graffiti" class="filter-background">
-        <div id="reported-time">
-          <div class="filter-option-header">
-            <h3>Graffiti Reported Between</h3>
-          </div>
-          <div class="filter-option-content">
-            <div>
-            <label for="start-date">Start Date</label>
-            <input class="date-input" type="text" id="start-date"></input>
-            </div>
-            <div>
-            <label for="end-date">End Date</label>
-            <input class="date-input" type="text" id="end-date"></input>
-            </div>
-            <div id="date-slider"></div>
-          </div>
+
+    <div id="main">
+        <div id="map-canvas">
         </div>
-        <div id="offensiveness">
-          <div class="filter-option-header">
-            <h3>Types of Graffiti</h3>
+      </div> 
+    <div id="sidebar">
+      <img id="hide-sidebar" alt="hide or show sidebar icon" data-hidden="false" src="css/hide.png">
+      <div id="sidebar-header">
+        <h1>Filters</h1>
+      </div>
+      <div id="filter-content">
+        <div id="filters-graffiti" class="filter-background">
+          
+          <div id="reported-time">
+            <div class="filter-option-header">
+              <h3>Graffiti Reported Between</h3>
+            </div>
+            <div class="filter-option-content">
+              <div>
+                <label for="start-date">Start Date</label>
+                <input class="date-input" type="text" id="start-date"></input>
+              </div>
+              <div>
+                <label for="end-date">End Date</label>
+                <input class="date-input" type="text" id="end-date"></input>
+              </div>
+              <div id="date-slider">
+              </div>
+            </div>
           </div>
-          <div class="filter-option-content">
-            <div id="offensive-checkboxes">
-              <input type="checkbox" id="offensive-checkbox" checked="checked"></input>
-              <label for="offensive-checkbox">Offensive</label>
-              <input type="checkbox" id="not-offensive-checkbox"></input>
-              <label for="not-offensive-checkbox">Not Offensive</label>
+
+          <div id="offensiveness">
+            <div class="filter-option-header">
+              <h3>Types of Graffiti</h3>
+            </div>
+            <div class="filter-option-content">
+              <div id="offensive-checkboxes">
+                <input type="checkbox" id="offensive-checkbox" checked="checked"></input>
+                <label for="offensive-checkbox">Offensive</label>
+                <input type="checkbox" id="not-offensive-checkbox"></input>
+                <label for="not-offensive-checkbox">Not Offensive</label>
               <!-- <input type="checkbox" id="all-types-checkbox"></input>
               <label for="all-types-checkbox">Both</label> -->
+              </div>
             </div>
           </div>
-        </div>
-        <div id="case-status">
-          <div class="filter-option-header">
-            <h3>Graffiti Case Status</h3>
-          </div>
-          <div class="filter-option-content">
-            <div id="case-status-button">
+
+          <div id="case-status">
+            <div class="filter-option-header">
+              <h3>Graffiti Case Status</h3>
+            </div>
+            <div class="filter-option-content">
+              <div id="case-status-button">
               
-              <input type="checkbox" id="open-checkbox" checked="checked"></input>
-              <label for="open-checkbox">Open</label>
-              
-              <input type="checkbox" id="closed-checkbox"></input>  
-              <label for="closed-checkbox">Closed</label>
+                <input type="checkbox" id="open-checkbox" checked="checked"></input>
+                <label for="open-checkbox">Open</label>
+                <input type="checkbox" id="closed-checkbox"></input>  
+                <label for="closed-checkbox">Closed</label>
               
               <!-- <input type="checkbox" id="all-status-checkbox"></input>
               <label for="all-status-checkbox">Both</label> -->
+              </div>
             </div>
           </div>
-        </div>
       </div>
+
 
       <div id="filters-income" class="filter-background">
         <div class="filter-option-header">
@@ -116,6 +117,6 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
 </body>
 </html>

@@ -2,7 +2,20 @@ $(document).ready(function() {
 		
 	var map;
 	initializeMap();
-	loadMuralData();
+	//loadMuralData();
+
+	/*             EVENT HANDLERS                  */
+	$('#hide-sidebar').click(function() {
+
+		if ( $(this).data('hidden') == "true" ) {
+			$('#filter-content').show();
+			$(this).attr('src', 'css/hide.png');
+		} else {
+			$('#filter-content').hide();
+			$(this).attr('src', 'css/show.png');
+			$(this).data('hidden', 'true');
+		}
+	});
 
 });
 
