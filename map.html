@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Map</title>
+
+  <!-- Scripts -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+  <script src="js/mural-map.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Londrina+Outline|Audiowide|Bangers|Wallpoet' rel='stylesheet' type='text/css'>
+ <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
+ <script type="text/javascript" src="streetArtFilters.js"></script>
+
+
+  <!-- Custom style -->
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/filterStyle.css" type="text/css">
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+
+ 
+</head>
+
+<body>
+  <div id="wrapper">  
+    <header>
+      <div id="logo">
+        <h1>SF Street Art Map</h1>
+      </div>
+    </header>
+
+    <div id="toggle" class="art-selectors">
+      <input class="selector-button" type="button" id="graffiti-button" value="Graffiti" />
+      <input class="selector-button" type="button" id="mural-button" value="Mural Art" />
+      <input class="selector-button" type="button" id="income-button" value="Income" />
+    </div>
+
+    <div id="main">
+        <div id="map-canvas">
+        </div>
+      </div> 
+    <div id="sidebar">
+      <img id="hide-sidebar" alt="hide or show sidebar icon" data-hidden="false" src="css/hide.png">
+      <div id="sidebar-header">
+        <h1>Filters</h1>
+      </div>
+      <div id="filter-content">
+        <div id="filters-graffiti" class="filter-background">
+          
+          <div id="reported-time">
+            <div class="filter-option-header">
+              <h3>Graffiti Reported Between</h3>
+            </div>
+            <div class="filter-option-content">
+              <div>
+                <label for="start-date">Start Date</label>
+                <input class="date-input" type="text" id="start-date"></input>
+              </div>
+              <div>
+                <label for="end-date">End Date</label>
+                <input class="date-input" type="text" id="end-date"></input>
+              </div>
+              <div id="date-slider">
+              </div>
+            </div>
+          </div>
+
+          <div id="offensiveness">
+            <div class="filter-option-header">
+              <h3>Types of Graffiti</h3>
+            </div>
+            <div class="filter-option-content">
+              <div id="offensive-checkboxes">
+                <input type="checkbox" id="offensive-checkbox" checked="checked"></input>
+                <label for="offensive-checkbox">Offensive</label>
+                <input type="checkbox" id="not-offensive-checkbox"></input>
+                <label for="not-offensive-checkbox">Not Offensive</label>
+              <!-- <input type="checkbox" id="all-types-checkbox"></input>
+              <label for="all-types-checkbox">Both</label> -->
+              </div>
+            </div>
+          </div>
+
+          <div id="case-status">
+            <div class="filter-option-header">
+              <h3>Graffiti Case Status</h3>
+            </div>
+            <div class="filter-option-content">
+              <div id="case-status-button">
+              
+                <input type="checkbox" id="open-checkbox" checked="checked"></input>
+                <label for="open-checkbox">Open</label>
+                <input type="checkbox" id="closed-checkbox"></input>  
+                <label for="closed-checkbox">Closed</label>
+              
+              <!-- <input type="checkbox" id="all-status-checkbox"></input>
+              <label for="all-status-checkbox">Both</label> -->
+              </div>
+            </div>
+          </div>
+      </div>
+
+
+      <div id="filters-income" class="filter-background">
+        <div class="filter-option-header">
+          <h3>Income Year</h3>
+        </div>
+        <div class="filter-option-content">
+          <div id="income-year-button">
+            <input type="radio" id="income-year1" name="income-year"></input>
+            <label for="income-year1">2011</label>
+            <input type="radio" id="income-year2" name="income-year"></input>
+            <label for="income-year2">2010</label>
+            <input type="radio" id="income-year3" name="income-year"></input>
+            <label for="income-year3">2009</label>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</body>
+</html>
