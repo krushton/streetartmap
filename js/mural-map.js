@@ -1,3 +1,4 @@
+var layer;
 $(document).ready(function() {
 		
 	var map;
@@ -17,6 +18,7 @@ $(document).ready(function() {
 			$(this).data('hidden', 'true');
 		}
 	});
+	$('#date-slider').bind("slidestop", updateSliderEvent);
 
 });
 
@@ -29,6 +31,35 @@ function initializeMap() {
 	
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
+        layer = new google.maps.FusionTablesLayer({
+          query: {
+            select: 'Address',
+            from: '1i5AvxZ-dOotZOtFu_LWD_l3d3qOw6GvrnVYo63s'
+          },
+          map: map
+        });
+
+}
+
+function updateSliderEvent(){
+// when the slider is released, call this function
+	console.log("Update Slider called when slider is released");
+
+	var start_time = $('#start-date').datepicker('getDate');
+	var end_time = $('#end-date').datepicker('getDate');
+	start_time = $.datepicker.formatDate( 'mm/dd/yy', start_time );
+	end_time = $.datepicker.formatDate( 'mm/dd/yy', end_time );
+	console.log(start_time);
+	console.log(end_time);
+	// select points in the database
+	  layer.setOptions({
+          query: {
+            select: 'Address',
+            from: '1i5AvxZ-dOotZOtFu_LWD_l3d3qOw6GvrnVYo63s',
+		where: "Opened >'"+ start_time + "' AND Opened <'"+ end_time + "'"
+          },
+          map: map
+        });
 }
 
 function loadMuralData() {
