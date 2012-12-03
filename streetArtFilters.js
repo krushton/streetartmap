@@ -81,6 +81,7 @@ $(function(){
 		$("#income-button").toggleClass("selector-button-clicked");
 		console.log($("#income-button").attr("class"));
 
+		//if income button is clicked, default the year to 2011	
 		if($("#income-button").attr("class") == "selector-button selector-button-clicked"){
 			$("input[id=income-year1]").prop("checked",true);
 			$("input[id=income-year1]").button("refresh");
@@ -90,6 +91,18 @@ $(function(){
 		else{
 			$("input[name=income-year]").prop("checked",false);
 			$("input[name=income-year]").button("refresh");
+
+			//reset the max and min date of the sliders
+			// maxDate = new Date(); //maximum date is today's date
+			// minDate = new Date(2008, 7-1,1); //starting date for graffiti data is July 1, 2008
+
+			// $("#start-date").datepicker("option", "minDate", minDate);
+			// $("#start-date").datepicker("option", "maxDate", maxDate);
+
+			// $("#end-date").datepicker("option", "minDate", minDate);
+			// $("#end-date").datepicker("option", "maxDate", maxDate);
+
+			// $("#date-slider").slider("option", "max", dataRange);
 			$("#filters-income").hide();
 		}
 	});
@@ -112,41 +125,72 @@ $(function(){
 // 	});
 
 //restrict date slider by the selected year of income data
-	$("input[name=income-year]").change(function(){
-		console.log("click radio");
-		var radioButton = $("input[name=income-year]:checked").attr("id");
-		var incomeYear = $("input[name=income-year]:checked + label").text();
-		console.log(incomeYear);
+	// $("input[name=income-year]").change(function(){
+	// 	console.log("click radio");
+	// 	var radioButton = $("input[name=income-year]:checked").attr("id");
+	// 	var incomeYear = $("input[name=income-year]:checked + label").text();
+	// 	console.log(incomeYear);
 
-		incomeYear = parseInt(incomeYear);
+	// 	incomeYear = parseInt(incomeYear);
 
-		var incomeYearStartDate = new Date(incomeYear,1-1,1);
-		var incomeYearEndDate = new Date(incomeYear, 12-1, 31);
+	// 	var incomeYearStartDate = new Date(incomeYear,1-1,1);
+	// 	var incomeYearEndDate = new Date(incomeYear, 12-1, 31);
 
-		//reset the boundary of the date picker
-		$("#start-date").datepicker("option", "minDate", incomeYearStartDate);
-		$("#start-date").datepicker("option", "maxDate", incomeYearEndDate);
-		$("#start-date").val($.datepicker.formatDate("mm/dd/yy",incomeYearStartDate));
+	// 	//reset the boundary of the date picker
+	// 	$("#start-date").datepicker("option", "minDate", incomeYearStartDate);
+	// 	$("#start-date").datepicker("option", "maxDate", incomeYearEndDate);
+	// 	$("#start-date").val($.datepicker.formatDate("mm/dd/yy",incomeYearStartDate));
 
-		$("#end-date").datepicker("option", "minDate", incomeYearStartDate);
-		$("#end-date").datepicker("option", "maxDate", incomeYearEndDate);
-		$("#end-date").val($.datepicker.formatDate("mm/dd/yy",incomeYearEndDate));
+	// 	$("#end-date").datepicker("option", "minDate", incomeYearStartDate);
+	// 	$("#end-date").datepicker("option", "maxDate", incomeYearEndDate);
+	// 	$("#end-date").val($.datepicker.formatDate("mm/dd/yy",incomeYearEndDate));
 
-		//reset the date range of the slider
-		var oneYearRange = getDateDiff(incomeYearStartDate, incomeYearEndDate);
-		$("#date-slider").slider("option", "max", oneYearRange);
+	// 	//reset the date range of the slider
+	// 	var oneYearRange = getDateDiff(incomeYearStartDate, incomeYearEndDate);
+	// 	$("#date-slider").slider("option", "max", oneYearRange);
 		
-		//update the min and max date of the slider
-		minDate=incomeYearStartDate;
-		maxDate=incomeYearEndDate;
-		
-		console.log("startDate: ", incomeYearStartDate, " ", incomeYearEndDate);
-	});
+	// 	//update the min and max date of the slider
+	// 	minDate=incomeYearStartDate;
+	// 	maxDate=incomeYearEndDate;
 
-	
-
+	// 	//update slider positions
+	// 	$("#date-slider").slider("values", 0, 0);
+	// 	$("#date-slider").slider("values", 1,0);
+	// 	//console.log("startDate: ", incomeYearStartDate, " ", incomeYearEndDate);
+	// });
 });
 
 function getDateDiff(firstDate, laterDate){
 	return Math.floor((laterDate.getTime()-firstDate.getTime())/86400000);
 }
+
+// function updateDatesByIncomeYear(){
+// 	var radioButton = $("input[name=income-year]:checked").attr("id");
+// 		var incomeYear = $("input[name=income-year]:checked + label").text();
+// 		console.log(incomeYear);
+
+// 		incomeYear = parseInt(incomeYear);
+
+// 		var incomeYearStartDate = new Date(incomeYear,1-1,1);
+// 		var incomeYearEndDate = new Date(incomeYear, 12-1, 31);
+
+// 		//reset the boundary of the date picker
+// 		$("#start-date").datepicker("option", "minDate", incomeYearStartDate);
+// 		$("#start-date").datepicker("option", "maxDate", incomeYearEndDate);
+// 		$("#start-date").val($.datepicker.formatDate("mm/dd/yy",incomeYearStartDate));
+
+// 		$("#end-date").datepicker("option", "minDate", incomeYearStartDate);
+// 		$("#end-date").datepicker("option", "maxDate", incomeYearEndDate);
+// 		$("#end-date").val($.datepicker.formatDate("mm/dd/yy",incomeYearEndDate));
+
+// 		//reset the date range of the slider
+// 		var oneYearRange = getDateDiff(incomeYearStartDate, incomeYearEndDate);
+// 		$("#date-slider").slider("option", "max", oneYearRange);
+		
+// 		//update the min and max date of the slider
+// 		minDate=incomeYearStartDate;
+// 		maxDate=incomeYearEndDate;
+
+// 		//update slider positions
+// 		//TBD
+// }
