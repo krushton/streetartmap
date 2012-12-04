@@ -21,6 +21,8 @@ $(document).ready(function() {
 });
 
 function initializeMap() {
+
+	var myLatlng = new google.maps.LatLng(37.775174,-122.419186);
 	var mapOptions = {
 			  zoom: 13,
 			  center: new google.maps.LatLng(37.775174,-122.419186),
@@ -28,6 +30,12 @@ function initializeMap() {
 	};
 	
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+	var kmlLayer = new google.maps.KmlLayer('http://ischool.berkeley.edu/~derek/SFWIbyZip.kml',
+    {
+        suppressInfoWindows: true,
+        map: map
+    });
 
 }
 
