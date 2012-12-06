@@ -17,6 +17,7 @@ $(function(){
 	$("#income-year-button").buttonset();
 	$("#offensive-checkboxes").buttonset();
 	$("#case-status-button").buttonset();
+	$('#art-type-button').buttonset();
 
 	//set up date picker and update the slider when selecting a new date
 	$("#start-date").datepicker({ 

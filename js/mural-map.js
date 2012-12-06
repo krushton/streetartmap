@@ -58,7 +58,7 @@ $(document).ready(function() {
 		
 	var map;
 	initializeMap();
-	//loadMuralData();
+
    google.load('visualization', '1', {packages: ['corechart']});
 // google.setOnLoadCallback(drawChart);
 

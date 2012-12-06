@@ -33,24 +33,29 @@
       </div>
     </header>
 
-    <div id="toggle" class="art-selectors">
-      <input class="selector-button" type="button" id="graffiti-button" value="Graffiti" />
-      <input class="selector-button" type="button" id="mural-button" value="Mural Art" />
-      <input class="selector-button" type="button" id="income-button" value="Income" />
-    </div>
-
     <div id="main">
         <div id="map-canvas">
         </div>
       </div> 
-    <div id="sidebar">
+     <div id="sidebar">
       <img id="hide-sidebar" alt="hide or show sidebar icon" data-hidden="false" src="css/hide.png">
       <div id="sidebar-header">
         <h1>Filters</h1>
       </div>
       <div id="filter-content">
+
         <div id="filters-graffiti" class="filter-background">
-          
+          <div class="filter-option-header">
+              <h3>Show Data</h3>
+            </div>
+           <div id="art-type-button">
+                <input type="checkbox" checked="checked" id="graffiti-button"></input>
+                <label for="graffiti-button">Graffiti</label>
+                <input type="checkbox" checked="checked" id="murals-button"></input>
+                <label for="murals-button">Murals</label>
+                <input type="checkbox" checked="checked" id="income-button"></input>
+                <label for="income-button">Income</label>
+          </div>
           <div id="reported-time">
             <div class="filter-option-header">
               <h3>Graffiti Reported Between</h3>
