@@ -25,6 +25,46 @@
       	<key>normal</key>
         <styleUrl>#default_normal</styleUrl>
       </Pair>
+        <Pair>
+          <key>category_1</key>
+          <styleUrl>#category_1</styleUrl>
+        </Pair>
+        <Pair>
+          <key>category_2</key>
+          <styleUrl>#category_2</styleUrl>
+        </Pair>
+        <Pair>
+          <key>category_3</key>
+          <styleUrl>#category_3</styleUrl>
+        </Pair>
+        <Pair>
+          <key>category_4</key>
+          <styleUrl>#category_4</styleUrl>
+        </Pair>
+        <Pair>
+          <key>category_5</key>
+          <styleUrl>#category_5</styleUrl>
+        </Pair>
+        <Pair>
+          <key>category_6</key>
+          <styleUrl>#category_6</styleUrl>
+        </Pair>
+        <Pair>
+          <key>category_7</key>
+          <styleUrl>#category_7</styleUrl>
+        </Pair>
+        <Pair>
+          <key>category_8</key>
+          <styleUrl>#category_7</styleUrl>
+        </Pair>
+        <Pair>
+          <key>category_9</key>
+          <styleUrl>#category_7</styleUrl>
+        </Pair>
+        <Pair>
+          <key>category_10</key>
+          <styleUrl>#category_7</styleUrl>
+        </Pair>
       <Pair>
         <key>highlight</key>
         <styleUrl>#default_highlight</styleUrl>
@@ -98,8 +138,331 @@
       </text>
     </BalloonStyle>
     </Style>
+  
+  <Style id="category_1">
+    <IconStyle>
+      <scale>1</scale>
+      <Icon>
+        <href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png</href>
+      </Icon>
+    </IconStyle>
+    <LabelStyle>
+      <scale>0</scale>
+      
+    </LabelStyle>
+    <LineStyle>
+      <color>ddffffff</color>
+      <width>2</width>
+      
+    </LineStyle>
+    <PolyStyle>
+      <color>9900ffff</color>
+      <outline>1</outline>
+      <fill>1</fill>
+    </PolyStyle>
+    <BalloonStyle>
+      <bgColor>ffffff</bgColor>
+      <text>
+        <![CDATA[
+            <p><b><font color="#000000">$[zipcode/displayName]:</font></b> <font color="#555555">$[zipcode]</font></p>
+            <p><b><font color="#000000">$[weightedincome/displayName]:</font></b> <font color="#555555">$[weightedincome]</font></p>
+          <p align="center"><font size=3 face=arial color="#0099FF">Powered by GeoCommons</font></p>
+        ]]>
+      </text>
+    </BalloonStyle>
+  </Style>
+  <Style id="category_2">
+    <IconStyle>
+      <scale>1</scale>
+      <Icon>
+        <href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png</href>
+      </Icon>
+    </IconStyle>
+    <LabelStyle>
+      <scale>0</scale>
+      
+    </LabelStyle>
+    <LineStyle>
+      <color>ddffffff</color>
+      <width>2</width>
+      
+    </LineStyle>
+    <PolyStyle>
+      <color>9913fbe6</color>
+      <outline>1</outline>
+      <fill>1</fill>
+    </PolyStyle>
+    <BalloonStyle>
+      <bgColor>ffffff</bgColor>
+      <text>
+        <![CDATA[
+            <p><b><font color="#000000">$[zipcode/displayName]:</font></b> <font color="#555555">$[zipcode]</font></p>
+            <p><b><font color="#000000">$[weightedincome/displayName]:</font></b> <font color="#555555">$[weightedincome]</font></p>
+          <p align="center"><font size=3 face=arial color="#0099FF">Powered by GeoCommons</font></p>
+        ]]>
+      </text>
+    </BalloonStyle>
+  </Style>
+  
+  <Style id="category_3">
+    <IconStyle>
+      <scale>1</scale>
+      <Icon>
+        <href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png</href>
+      </Icon>
+    </IconStyle>
+    <LabelStyle>
+      <scale>0</scale>
+      
+    </LabelStyle>
+    <LineStyle>
+      <color>ddffffff</color>
+      <width>2</width>
+      
+    </LineStyle>
+    <PolyStyle>
+      <color>9909ffc4</color>
+      <outline>1</outline>
+      <fill>1</fill>
+    </PolyStyle>
+    <BalloonStyle>
+      <bgColor>ffffff</bgColor>
+      <text>
+        <![CDATA[
+            <p><b><font color="#000000">$[zipcode/displayName]:</font></b> <font color="#555555">$[zipcode]</font></p>
+            <p><b><font color="#000000">$[weightedincome/displayName]:</font></b> <font color="#555555">$[weightedincome]</font></p>
+          <p align="center"><font size=3 face=arial color="#0099FF">Powered by GeoCommons</font></p>
+        ]]>
+      </text>
+    </BalloonStyle>
+  </Style>
+  <Style id="category_4">
+    <IconStyle>
+      <scale>1</scale>
+      <Icon>
+        <href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png</href>
+      </Icon>
+    </IconStyle>
+    <LabelStyle>
+      <scale>0</scale>
+      
+    </LabelStyle>
+    <LineStyle>
+      <color>ddffffff</color>
+      <width>2</width>
+      
+    </LineStyle>
+    <PolyStyle>
+      <color>9907ff9b</color>
+      <outline>1</outline>
+      <fill>1</fill>
+    </PolyStyle>
+    <BalloonStyle>
+      <bgColor>ffffff</bgColor>
+      <text>
+        <![CDATA[
+            <p><b><font color="#000000">$[zipcode/displayName]:</font></b> <font color="#555555">$[zipcode]</font></p>
+            <p><b><font color="#000000">$[weightedincome/displayName]:</font></b> <font color="#555555">$[weightedincome]</font></p>
+          <p align="center"><font size=3 face=arial color="#0099FF">Powered by GeoCommons</font></p>
+        ]]>
+      </text>
+    </BalloonStyle>
+  </Style>
+  <Style id="category_5">
+    <IconStyle>
+      <scale>1</scale>
+      <Icon>
+        <href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png</href>
+      </Icon>
+    </IconStyle>
+    <LabelStyle>
+      <scale>0</scale>
+      
+    </LabelStyle>
+    <LineStyle>
+      <color>ddffffff</color>
+      <width>2</width>
+      
+    </LineStyle>
+    <PolyStyle>
+      <color>9909fc3c</color>
+      <outline>1</outline>
+      <fill>1</fill>
+    </PolyStyle>
+    <BalloonStyle>
+      <bgColor>ffffff</bgColor>
+      <text>
+        <![CDATA[
+            <p><b><font color="#000000">$[zipcode/displayName]:</font></b> <font color="#555555">$[zipcode]</font></p>
+            <p><b><font color="#000000">$[weightedincome/displayName]:</font></b> <font color="#555555">$[weightedincome]</font></p>
+          <p align="center"><font size=3 face=arial color="#0099FF">Powered by GeoCommons</font></p>
+        ]]>
+      </text>
+    </BalloonStyle>
+  </Style>
+  <Style id="category_6">
+    <IconStyle>
+      <scale>1</scale>
+      <Icon>
+        <href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png</href>
+      </Icon>
+    </IconStyle>
+    <LabelStyle>
+      <scale>0</scale>
+      
+    </LabelStyle>
+    <LineStyle>
+      <color>ddffffff</color>
+      <width>2</width>
+      
+    </LineStyle>
+    <PolyStyle>
+      <color>990df12b</color>
+      <outline>1</outline>
+      <fill>1</fill>
+    </PolyStyle>
+    <BalloonStyle>
+      <bgColor>ffffff</bgColor>
+      <text>
+        <![CDATA[
+            <p><b><font color="#000000">$[zipcode/displayName]:</font></b> <font color="#555555">$[zipcode]</font></p>
+            <p><b><font color="#000000">$[weightedincome/displayName]:</font></b> <font color="#555555">$[weightedincome]</font></p>
+          <p align="center"><font size=3 face=arial color="#0099FF">Powered by GeoCommons</font></p>
+        ]]>
+      </text>
+    </BalloonStyle>
+  </Style>
+  <Style id="category_7">
+    <IconStyle>
+      <scale>1</scale>
+      <Icon>
+        <href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png</href>
+      </Icon>
+    </IconStyle>
+    <LabelStyle>
+      <scale>0</scale>
+      
+    </LabelStyle>
+    <LineStyle>
+      <color>ddffffff</color>
+      <width>2</width>
+      
+    </LineStyle>
+    <PolyStyle>
+      <color>990ed724</color>
+      <outline>1</outline>
+      <fill>1</fill>
+    </PolyStyle>
+    <BalloonStyle>
+      <bgColor>ffffff</bgColor>
+      <text>
+        <![CDATA[
+            <p><b><font color="#000000">$[zipcode/displayName]:</font></b> <font color="#555555">$[zipcode]</font></p>
+            <p><b><font color="#000000">$[weightedincome/displayName]:</font></b> <font color="#555555">$[weightedincome]</font></p>
+          <p align="center"><font size=3 face=arial color="#0099FF">Powered by GeoCommons</font></p>
+        ]]>
+      </text>
+    </BalloonStyle>
+  </Style>
+  <Style id="category_8">
+    <IconStyle>
+      <scale>1</scale>
+      <Icon>
+        <href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png</href>
+      </Icon>
+    </IconStyle>
+    <LabelStyle>
+      <scale>0</scale>
+      
+    </LabelStyle>
+    <LineStyle>
+      <color>ddffffff</color>
+      <width>2</width>
+      
+    </LineStyle>
+    <PolyStyle>
+      <color>9911bd22</color>
+      <outline>1</outline>
+      <fill>1</fill>
+    </PolyStyle>
+    <BalloonStyle>
+      <bgColor>ffffff</bgColor>
+      <text>
+        <![CDATA[
+            <p><b><font color="#000000">$[zipcode/displayName]:</font></b> <font color="#555555">$[zipcode]</font></p>
+            <p><b><font color="#000000">$[weightedincome/displayName]:</font></b> <font color="#555555">$[weightedincome]</font></p>
+          <p align="center"><font size=3 face=arial color="#0099FF">Powered by GeoCommons</font></p>
+        ]]>
+      </text>
+    </BalloonStyle>
+  </Style>
+ 
+  <Style id="category_9">
+    <IconStyle>
+      <scale>1</scale>
+      <Icon>
+        <href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png</href>
+      </Icon>
+    </IconStyle>
+    <LabelStyle>
+      <scale>0</scale>
+      
+    </LabelStyle>
+    <LineStyle>
+      <color>ddffffff</color>
+      <width>2</width>
+      
+    </LineStyle>
+    <PolyStyle>
+      <color>99259a1c</color>
+      <outline>1</outline>
+      <fill>1</fill>
+    </PolyStyle>
+    <BalloonStyle>
+      <bgColor>ffffff</bgColor>
+      <text>
+        <![CDATA[
+            <p><b><font color="#000000">$[zipcode/displayName]:</font></b> <font color="#555555">$[zipcode]</font></p>
+            <p><b><font color="#000000">$[weightedincome/displayName]:</font></b> <font color="#555555">$[weightedincome]</font></p>
+          <p align="center"><font size=3 face=arial color="#0099FF">Powered by GeoCommons</font></p>
+        ]]>
+      </text>
+    </BalloonStyle>
+  </Style>
+  <Style id="category_10">
+    <IconStyle>
+      <scale>1</scale>
+      <Icon>
+        <href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png</href>
+      </Icon>
+    </IconStyle>
+    <LabelStyle>
+      <scale>0</scale>
+      
+    </LabelStyle>
+    <LineStyle>
+      <color>ddffffff</color>
+      <width>2</width>
+      
+    </LineStyle>
+    <PolyStyle>
+      <color>9912871c</color>
+      <outline>1</outline>
+      <fill>1</fill>
+    </PolyStyle>
+    <BalloonStyle>
+      <bgColor>ffffff</bgColor>
+      <text>
+        <![CDATA[
+            <p><b><font color="#000000">$[zipcode/displayName]:</font></b> <font color="#555555">$[zipcode]</font></p>
+            <p><b><font color="#000000">$[weightedincome/displayName]:</font></b> <font color="#555555">$[weightedincome]</font></p>
+          <p align="center"><font size=3 face=arial color="#0099FF">Powered by GeoCommons</font></p>
+        ]]>
+      </text>
+    </BalloonStyle>
+  </Style>
           <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_3</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -123,7 +486,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_1</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -147,7 +510,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_2</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -171,7 +534,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_10</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -195,7 +558,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_9</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -231,7 +594,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_8</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -255,7 +618,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_1</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -279,7 +642,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_4</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -303,7 +666,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_5</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -327,7 +690,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_4</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -351,7 +714,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_2</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -375,7 +738,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_8</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -399,7 +762,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_7</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -423,7 +786,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_4</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -447,7 +810,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_8</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -471,7 +834,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_7</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -495,7 +858,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_4</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -519,7 +882,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_4</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -543,7 +906,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_8</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -567,7 +930,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_2</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -591,7 +954,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_5</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -615,7 +978,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_10</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -639,7 +1002,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_8</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -663,7 +1026,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_8</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -687,7 +1050,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_4</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
@@ -718,7 +1081,7 @@
 	      </MultiGeometry>
     </Placemark>
     <Placemark>
-      <styleUrl>#default</styleUrl>
+      <styleUrl>#category_3</styleUrl>
         <name><![CDATA[zip code:]]></name>
       
       <ExtendedData>
