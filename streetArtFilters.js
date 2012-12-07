@@ -65,6 +65,7 @@ $(function(){
 		}
 
 	});
+	$("#date-slider").slider("values", 1, dateRange);
 	
 	$("#filters-income").hide();
 
