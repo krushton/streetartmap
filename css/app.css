@@ -117,4 +117,28 @@ a.button {
 }
 
 
+#legend {
+background-color: #FFF;
+margin: 10px;
+padding: 5px;
+width: 150px;
+}
+
+#legend p {
+font-weight: bold;
+margin-top: 3px;
+}
+
+#legend div {
+clear: both;
+}
+
+.color {
+height: 12px;
+width: 12px;
+margin-right: 3px;
+float: left;
+display: block;
+}
+
 
