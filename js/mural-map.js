@@ -59,9 +59,10 @@ $(document).ready(function() {
 	var map;
 	initializeMap();
 
-   google.load('visualization', '1', {packages: ['corechart']});
+//   google.load('visualization', '1', {packages: ['corechart']});
 // google.setOnLoadCallback(drawChart);
 
+  loadMuralData();
 
 
 	/*             EVENT HANDLERS                  */
