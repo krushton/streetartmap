@@ -51,7 +51,7 @@
             </div>
            <div id="art-type-button">
                 <input type="checkbox" checked="checked" id="graffiti-button"></input>
-                <label for="graffiti-button">Graffiti</label>
+                <label for="graffiti-button" onclick="clickGraffitiButton()" >Graffiti</label>
                 <input type="checkbox" checked="checked" id="murals-button"></input>
                 <label for="murals-button">Murals</label>
                 <input type="checkbox" checked="checked" id="income-button"></input>
@@ -81,9 +81,9 @@
             </div>
             <div class="filter-option-content">
               <div id="offensive-checkboxes">
-                <input type="checkbox" id="offensive-checkbox" checked="checked"></input>
+                <input type="checkbox" id="offensive-checkbox" checked="checked" onclick="updateMapCanvas()" ></input>
                 <label for="offensive-checkbox">Offensive</label>
-                <input type="checkbox" id="not-offensive-checkbox" checked="checked"></input>
+                <input type="checkbox" id="not-offensive-checkbox" checked="checked" onclick="updateMapCanvas()" ></input>
                 <label for="not-offensive-checkbox">Not Offensive</label>
               <!-- <input type="checkbox" id="all-types-checkbox"></input>
               <label for="all-types-checkbox">Both</label> -->
@@ -98,9 +98,9 @@
             <div class="filter-option-content">
               <div id="case-status-button">
               
-                <input type="checkbox" id="open-checkbox" checked="checked"></input>
+                <input type="checkbox" id="open-checkbox" checked="checked" onclick="updateMapCanvas()" ></input>
                 <label for="open-checkbox">Open</label>
-                <input type="checkbox" id="closed-checkbox" checked="checked"></input>  
+                <input type="checkbox" id="closed-checkbox" checked="checked" onclick="updateMapCanvas()" ></input>  
                 <label for="closed-checkbox">Closed</label>
               
               <!-- <input type="checkbox" id="all-status-checkbox"></input>
