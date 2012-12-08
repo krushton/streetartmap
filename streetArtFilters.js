@@ -1,5 +1,10 @@
+google.load('visualization', '1.0', {'packages':['corechart']});
+//google.setOnLoadCallback(drawChart);
+var neighborhood;
+
 $(function(){
 		
+
 	//set the date slider
 	var maxDate = new Date(); //maximum date is today's date
 	var minDate = new Date(2008, 7-1,1); //starting date for graffiti data is July 1, 2008
@@ -76,6 +81,8 @@ $(function(){
 		
 	$("#mural-button").click(function(){
 		$("#mural-button").toggleClass("selector-button-clicked");
+		console.log("clicked");
+		drawChart();
 	});
 		
 	$("#income-button").click(function(){
@@ -159,6 +166,7 @@ $(function(){
 	// 	$("#date-slider").slider("values", 1,0);
 	// 	//console.log("startDate: ", incomeYearStartDate, " ", incomeYearEndDate);
 	// });
+
 });
 
 function getDateDiff(firstDate, laterDate){
@@ -195,3 +203,49 @@ function getDateDiff(firstDate, laterDate){
 // 		//update slider positions
 // 		//TBD
 // }
+
+//draw open and closed graffiti case overtime by neighborhood
+//chart type: stacked line chart
+// line 1: open graffiti cases
+// line2: closed graffiti cases
+// x-axis: date from the same year of the selected marker from the map
+// y-axis: number of graffiti cases
+//data filter: only show graffiti cases within the neighbourhood of the selected marker from the map
+function drawChart(){
+
+	var yrStart = $('#start-date').datepicker('getDate');
+	var yrEnd = $('#end-date').datepicker('getDate');
+	yrStart = $.datepicker.formatDate( 'mm/dd/yy', yrStart );
+	yrEnd = $.datepicker.formatDate( 'mm/dd/yy', yrEnd );
+
+
+console.log(yrStart, yrEnd);
+console.log("neighborhood = ", neighborhood);
+
+	var queryText = encodeURIComponent(
+			 "SELECT Opened, COUNT('Case ID[1]') AS '# Cases' FROM 1EeV1qsCI_h6eB5DdtPDPdPo8UpivpWAUTX5E6Ko WHERE Opened >= '"+yrStart +"' AND Opened <= '"+yrEnd+"' AND Status = 'Open' AND Neighborhood = '"+neighborhood+"' GROUP BY Opened");
+
+//console.log("query: ", queryText);
+	var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq='  + queryText); 
+	  query.send(getData); 
+	
+}
+
+function getData(response){
+	console.log("got data: ", response.getDataTable());
+
+	var options = {
+		  title: neighborhood,
+		  //chartArea:{left:20,top:0,width:"85%",height:"85%"},
+          hAxis: {title: 'Opened Date',
+      			  gridlines: {count: 10}},
+          vAxis: {title: '# Cases'},
+          fontSize: 12,
+          legend: {position: 'top'}
+        };
+ 	
+ 	var chart = new google.visualization
+ 					.ColumnChart(document.getElementById('visualization')) 
+    				.draw(response.getDataTable(), options );
+
+}

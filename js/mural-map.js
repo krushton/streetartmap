@@ -59,6 +59,9 @@ $(document).ready(function() {
 	var map;
 	initializeMap();
 	//loadMuralData();
+   google.load('visualization', '1', {packages: ['corechart']});
+// google.setOnLoadCallback(drawChart);
+
 
 
 	/*             EVENT HANDLERS                  */
@@ -221,22 +224,28 @@ function initializeMap() {
           map: map
         });
 
-        $.ajax({
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/1yeV1PIUk5ByXuJEz_jHKDGHfL7bB_57vnhr8kpY/columns/geometry',
-          type: 'GET',
-          format: 'json',
-          success: function(data){
+        // $.ajax({
+        //   url: 'https://www.googleapis.com/fusiontables/v1/tables/1yeV1PIUk5ByXuJEz_jHKDGHfL7bB_57vnhr8kpY/columns/geometry',
+        //   type: 'GET',
+        //   format: 'json',
+        //   success: function(data){
 
-            console.log(data);
+        //     console.log(data);
 
-          }
-        })
+        //   }
+        // })
 
 
         var coordinate = new google.maps.LatLng(40, -90);                                                                                                                                                                                                       
         var polygon = new google.maps.Polygon([], "#000000", 1, 1, "#336699", 0.3);
         var isWithinPolygon = polygon.containsLatLng(coordinate);
 
+//when user clicks on a marker, draw chart based on the neighborhood the marker is in 
+google.maps.event.addListener(layer, 'click', function(e) {
+
+  neighborhood = e.row['Neighborhood'].value;
+  drawChart();
+});
 
 }
 
