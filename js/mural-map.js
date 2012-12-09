@@ -1,3 +1,5 @@
+
+
 var layer;
 
 var COLUMN_STYLES = {//fusion table styles limited to four per layer !? bizarre
@@ -136,18 +138,21 @@ function initializeMap() {
 
 	var myLatlng = new google.maps.LatLng(37.775174,-122.419186);
 	var mapOptions = {
+        maxZoom: 13,
+        minZoom: 3,
 			  zoom: 13,
         disableDefaultUI: true,
 			  center: new google.maps.LatLng(37.775174,-122.419186),
 			  mapTypeId: google.maps.MapTypeId.ROADMAP,
-        zoomControl: false,
-        panControl: false,
+        //zoomControl: false,
+        //panControl: false,
         navigationControl: false,
         mapTypeControl: false,
         scaleControl: false,
         draggable: false,
-        scrollwheel: false,
-        disableDoubleClickZoom: true
+        //scrollwheel: false,
+        disableDoubleClickZoom: true,
+        styles: [{markerOptions: {fillColor: '#00FF00'}}]
 	};
 	
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -212,32 +217,40 @@ function initializeMap() {
         addLegend(map);
 
 
-     	
-        layer = new google.maps.FusionTablesLayer({
+
+        /*layer = new google.maps.FusionTablesLayer({
           query: {
             select: 'Address',
             from: '1i5AvxZ-dOotZOtFu_LWD_l3d3qOw6GvrnVYo63s'
           },
-          map: map
+         // styles: [{markerOptions: {fillColor: '#00FF00'}}],
+          map: map  
+        });*/
+
+        layer2 = new google.maps.FusionTablesLayer({
+          query: {
+            select: 'Point',
+            from: '1EeV1qsCI_h6eB5DdtPDPdPo8UpivpWAUTX5E6Ko'
+          },
+         styles: [{
+            markerOptions: {
+              fillColor: "#00FF00"
+              //fillOpacity: 0.3
+         }}]
+       //   map: map  
         });
+        layer2.setMap(map);
 
-        $.ajax({
-          url: 'https://www.googleapis.com/fusiontables/v1/tables/1yeV1PIUk5ByXuJEz_jHKDGHfL7bB_57vnhr8kpY/columns/geometry',
-          type: 'GET',
-          format: 'json',
-          success: function(data){
-
-            console.log(data);
-
-          }
-        })
-
-
+        var ftID = '1EeV1qsCI_h6eB5DdtPDPdPo8UpivpWAUTX5E6Ko';
+        var query = "SELECT Point FROM "+ftID+" WHERE Neighborhood = 'Outer Richmond'";
+        var queryText = encodeURIComponent(query);
+        var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
+        console.log(query);
         var coordinate = new google.maps.LatLng(40, -90);                                                                                                                                                                                                       
         var polygon = new google.maps.Polygon([], "#000000", 1, 1, "#336699", 0.3);
         var isWithinPolygon = polygon.containsLatLng(coordinate);
 
-
+        console.log(isWithinPolygon);
 }
 
 function updateSliderEvent(){
@@ -444,4 +457,32 @@ google.maps.Polygon.prototype.containsLatLng = function(latLng) {
 
   return inPoly;
 }
+
+function setMarkerMessage(marker, message) {
+        
+        google.maps.event.addListener(marker, 'click', function() {
+          var streetViewDiv = document.createElement('div');
+          streetViewDiv.style.width = "400px";
+          streetViewDiv.style.height = "300px";
+          
+          var streetViewPanorama = new  google.maps.StreetViewPanorama(
+            streetViewDiv,
+            {
+              position: marker.getPosition(),
+              pov: {
+                heading: 34,
+                pitch: 10,
+                zoom: 1
+              }
+            }
+          );
+          
+          map.setStreetView(streetViewPanorama);
+          
+          infowindow.setContent(streetViewDiv);
+          infowindow.open(map, marker);
+
+          google.maps.event.trigger(streetViewPanorama, 'resize')
+        });
+      }
 
