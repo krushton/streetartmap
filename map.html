@@ -6,12 +6,13 @@
   <!-- Scripts -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js" type="text/javascript"></script>
 
-
+  <!-- <script src="http://code.jquery.com/jquery-1.8.3.js"></script> -->
 
   <link href='http://fonts.googleapis.com/css?family=Londrina+Outline|Audiowide|Bangers|Wallpoet' rel='stylesheet' type='text/css'>
  <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
  <link rel="stylesheet" href="https://developers.google.com/maps/documentation/javascript/examples/default.css" />
   <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <script src="js/mural-map.js"></script>
  <script type="text/javascript" src="streetArtFilters.js"></script>
 
@@ -33,24 +34,37 @@
       </div>
     </header>
 
-    <div id="toggle" class="art-selectors">
-      <input class="selector-button" type="button" id="graffiti-button" value="Graffiti" />
-      <input class="selector-button" type="button" id="mural-button" value="Mural Art" />
-      <input class="selector-button" type="button" id="income-button" value="Income" />
-    </div>
-
     <div id="main">
+
         <div id="map-canvas">
         </div>
       </div> 
-    <div id="sidebar">
+     <div id="sidebar">
       <img id="hide-sidebar" alt="hide or show sidebar icon" data-hidden="false" src="css/hide.png">
       <div id="sidebar-header">
         <h1>Filters</h1>
       </div>
       <div id="filter-content">
+
         <div id="filters-graffiti" class="filter-background">
-          
+          <div class="filter-option-header">
+              <h3>Show Data</h3>
+            </div>
+           <div id="art-type-button">
+                <input type="checkbox" checked="checked" id="graffiti-button"></input>
+                <label for="graffiti-button" onclick="clickGraffitiButton()" >Graffiti</label>
+                <input type="checkbox" checked="checked" id="murals-button"></input>
+                <label for="murals-button">Murals</label>
+                <input type="checkbox" id="income-button"></input>
+		<label for="income-button" onclick="clickIncome()">Income</label>
+                <input type="checkbox" id="public-transportation-button"></input>
+                <label for="public-transportation-button" onclick="clickTransit()" >Public Transportation</label>
+                <input type="checkbox" id="traffic-button"></input>
+                <label for="traffic-button" onclick="clickTraffic()">Traffic</label>
+                <input type="checkbox" id="bicycles-button" ></input>
+                <label for="bicycles-button" onclick="clickBikes()">Bicycles</label>
+	</div>
+
           <div id="reported-time">
             <div class="filter-option-header">
               <h3>Graffiti Reported Between</h3>
@@ -75,9 +89,9 @@
             </div>
             <div class="filter-option-content">
               <div id="offensive-checkboxes">
-                <input type="checkbox" id="offensive-checkbox" checked="checked"></input>
+                <input type="checkbox" id="offensive-checkbox" checked="checked" onclick="updateMapCanvas()" ></input>
                 <label for="offensive-checkbox">Offensive</label>
-                <input type="checkbox" id="not-offensive-checkbox" checked="checked"></input>
+                <input type="checkbox" id="not-offensive-checkbox" checked="checked" onclick="updateMapCanvas()" ></input>
                 <label for="not-offensive-checkbox">Not Offensive</label>
               <!-- <input type="checkbox" id="all-types-checkbox"></input>
               <label for="all-types-checkbox">Both</label> -->
@@ -92,9 +106,9 @@
             <div class="filter-option-content">
               <div id="case-status-button">
               
-                <input type="checkbox" id="open-checkbox" checked="checked"></input>
+                <input type="checkbox" id="open-checkbox" checked="checked" onclick="updateMapCanvas()" ></input>
                 <label for="open-checkbox">Open</label>
-                <input type="checkbox" id="closed-checkbox" checked="checked"></input>  
+                <input type="checkbox" id="closed-checkbox" checked="checked" onclick="updateMapCanvas()" ></input>  
                 <label for="closed-checkbox">Closed</label>
               
               <!-- <input type="checkbox" id="all-status-checkbox"></input>

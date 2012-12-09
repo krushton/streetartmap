@@ -54,12 +54,6 @@ a.button {
 	overflow: hidden;
 }
 
-#toggle {
-	position:absolute;
-	z-index:3;
-	width:100%;
-}
-
 #wrapper {
 	position:absolute;
 	margin:3%;
@@ -71,25 +65,25 @@ a.button {
 
 #sidebar {
 	width:25%;
-	border:3px solid #FFF;
-	border-radius:10px 10px 0px 0px;
 	position:absolute;
-	top:28px;
-	right:20px;
+	top:31px;
+	right:0px;
 	z-index:4;
+	background-color:#ECF1EF;
 }
 
 #sidebar-header {
 	background-color:#495e6b;
 	width:90%;
-	height:20px;
+	height:21px;
 	color:#FFF;
 	padding:5%;
-	border-radius:10px 10px 0px 0px;
 }
 
 #sidebar-header h1 {
 	line-height:0;
+	float:right;
+	margin-right:70px;
 }
 
 #filter-content {

@@ -1,6 +1,10 @@
 
 
 var layer;
+	var layer2011;
+	var trafficLayer = new google.maps.TrafficLayer();
+	var transitLayer = new google.maps.TransitLayer();
+	var bikeLayer = new google.maps.BicyclingLayer();
 
 var COLUMN_STYLES = {//fusion table styles limited to four per layer !? bizarre
         'Weighted_Income': [
@@ -60,7 +64,11 @@ $(document).ready(function() {
 		
 	var map;
 	initializeMap();
-	//loadMuralData();
+
+//   google.load('visualization', '1', {packages: ['corechart']});
+// google.setOnLoadCallback(drawChart);
+
+  loadMuralData();
 
 
 	/*             EVENT HANDLERS                  */
@@ -76,11 +84,12 @@ $(document).ready(function() {
 			$(this).data('hidden', 'true');
 		}
 	});
-	$('#date-slider').bind("slidestop", updateSliderEvent);
+	$('#date-slider').bind("slidestop", updateMapCanvas);
 
 });
 
 function initializeMap() {
+
 
    // Create an array of styles.
   var styles = [
@@ -156,21 +165,20 @@ function initializeMap() {
 	};
 	
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-  map.setOptions({styles: styles});
-
+  	map.setOptions({styles: styles});
+  
 	/*var kmlLayer = new google.maps.KmlLayer('http://ischool.berkeley.edu/~derek/SFWIbyZip.kml',
     {
         suppressInfoWindows: true,
         map: map
     });*/
 
-     var layer2011 = new google.maps.FusionTablesLayer({
+     layer2011 = new google.maps.FusionTablesLayer({
           query: {
             select: 'geometry', 
             from: '1yeV1PIUk5ByXuJEz_jHKDGHfL7bB_57vnhr8kpY',
           	where: "Year = 2011"
           },
-          map: map,
           suppressInfoWindows: false,
           /*styles: [{
                 polygonOptions: {
@@ -222,10 +230,29 @@ function initializeMap() {
           query: {
             select: 'Address',
             from: '1i5AvxZ-dOotZOtFu_LWD_l3d3qOw6GvrnVYo63s'
+
           },
          // styles: [{markerOptions: {fillColor: '#00FF00'}}],
           map: map  
         });*/
+
+          }
+
+	 });  
+	 layer.setMap(map);
+
+
+        // $.ajax({
+        //   url: 'https://www.googleapis.com/fusiontables/v1/tables/1yeV1PIUk5ByXuJEz_jHKDGHfL7bB_57vnhr8kpY/columns/geometry',
+        //   type: 'GET',
+        //   format: 'json',
+        //   success: function(data){
+
+        //     console.log(data);
+
+        //   }
+        // })
+
 
         layer2 = new google.maps.FusionTablesLayer({
           query: {
@@ -250,28 +277,176 @@ function initializeMap() {
         var polygon = new google.maps.Polygon([], "#000000", 1, 1, "#336699", 0.3);
         var isWithinPolygon = polygon.containsLatLng(coordinate);
 
+
         console.log(isWithinPolygon);
+
+//when user clicks on a marker, draw chart based on the neighborhood the marker is in 
+google.maps.event.addListener(layer, 'click', function(e) {
+
+  neighborhood = e.row['Neighborhood'].value;
+  drawChart();
+});
+
+
 }
 
-function updateSliderEvent(){
-// when the slider is released, call this function
-	console.log("Update Slider called when slider is released");
+// Displays graffiti points depending on state of filters
+function displayGraffitiPoints(){
+	var query = getSliderState() + getCaseStatus() + getOffensive();
+	console.log(query);
 
-	var start_time = $('#start-date').datepicker('getDate');
-	var end_time = $('#end-date').datepicker('getDate');
-	start_time = $.datepicker.formatDate( 'mm/dd/yy', start_time );
-	end_time = $.datepicker.formatDate( 'mm/dd/yy', end_time );
-	console.log(start_time);
-	console.log(end_time);
-	// select points in the database
+	// select points from database and display in Fusion Tables Layer
 	  layer.setOptions({
           query: {
             select: 'Address',
-            from: '1i5AvxZ-dOotZOtFu_LWD_l3d3qOw6GvrnVYo63s',
-		where: "Opened >'"+ start_time + "' AND Opened <'"+ end_time + "'"
+            from: '1EeV1qsCI_h6eB5DdtPDPdPo8UpivpWAUTX5E6Ko',
+		where: query
           },
           map: map
+
         });
+
+}
+function hideGraffitiPoints(){
+	var empty_query = getSliderState() + " AND Status = 'NONE'";
+	console.log(empty_query);
+
+	// display an empty layer
+	layer.setOptions({
+		query: {
+			select: 'Address',
+			from: '1EeV1qsCI_h6eB5DdtPDPdPo8UpivpWAUTX5E6Ko',
+			where: empty_query
+			},
+		map: map
+        });
+}
+
+function clickGraffitiButton(){
+	// this is essentially the same logic as updateMapCanvas,
+	// except the logic is reversed because of the Graffiti button click event
+	
+	// if Graffiti is to show up on the map...
+	if ($('#graffiti-button').is(':checked') == false ){
+		displayGraffitiPoints();
+	}
+
+	else { // no graffiti on map
+		hideGraffitiPoints();
+	}	
+}
+
+function updateMapCanvas(){
+
+	// if Graffiti is to show up on the map...
+	if ($('#graffiti-button').is(':checked') == true ){
+		displayGraffitiPoints();
+	}
+
+
+	else { // no graffiti on map
+		hideGraffitiPoints();
+	}
+}
+
+function clickBikes(){
+
+	if ($('#bicycles-button').is(':checked') == false ){
+		bikeLayer.setMap(map);
+	}
+
+	else {
+		bikeLayer.setMap();
+	}
+	updateMapCanvas();	
+}
+
+function clickTraffic(){
+
+	if ($('#traffic-button').is(':checked') == false ){
+		trafficLayer.setMap(map);
+	}
+
+	else {
+		trafficLayer.setMap();
+	}
+	updateMapCanvas();	
+}
+
+function clickTransit(){
+
+	if ($('#public-transportation-button').is(':checked') == false ){
+		transitLayer.setMap(map);
+	}
+
+	else {
+		transitLayer.setMap();
+	}
+	updateMapCanvas();
+}
+
+function clickIncome(){
+
+	if ($('#income-button').is(':checked') == false ){
+		layer2011.setMap(map);
+	}
+
+	else {
+		layer2011.setMap();
+	}
+	updateMapCanvas();
+}
+// Gets state of slider. Returns a string to append to database query.
+function getSliderState(){
+	var str;
+
+	var start_time = $('#start-date').datepicker('getDate');
+	var end_time = $('#end-date').datepicker('getDate');
+	start_time = $.datepicker.formatDate( 'M dd, yy', start_time );
+	end_time = $.datepicker.formatDate( 'M dd, yy', end_time );
+	console.log(start_time);
+	console.log(end_time);
+
+	str = "Opened >= '"+ start_time + "' AND Opened <= '"+ end_time + "'";
+	return str;
+
+}
+
+// Gets state of case status. Returns a string to append to database query.
+function getCaseStatus(){
+	var str = "";
+	if ($('#closed-checkbox').is(':checked') == true && $('#open-checkbox').is(':checked') == true){
+		// the string is empty. no parameters are passed, so no filters
+		// SELECT ALL
+	}
+	else if ($('#closed-checkbox').is(':checked') == true && $('#open-checkbox').is(':checked') == false){
+		str = " AND Status = 'Closed'";
+	}
+	else if ($('#closed-checkbox').is(':checked') == false && $('#open-checkbox').is(':checked') == true){
+		str = " AND Status = 'Open'";
+	}
+	else { // closed and open are both false
+		str = " AND Status = 'NONE'";
+	}
+	return str;
+}
+
+// Gets state of reported offensiveness. Returns a string to append to database query.
+function getOffensive(){
+	var str = "";
+	if ($('#offensive-checkbox').is(':checked') == true && $('#not-offensive-checkbox').is(':checked') == true ){
+		// SELECT ALL
+	}
+	else if ($('#offensive-checkbox').is(':checked') == true && $('#not-offensive-checkbox').is(':checked') == false ){
+		str = " AND 'Request Type' CONTAINS IGNORING CASE 'Offensive' AND 'Request Type' DOES NOT CONTAIN 'Not_Offensive'";
+	}
+	else if ($('#offensive-checkbox').is(':checked') == false && $('#not-offensive-checkbox').is(':checked') == true ){
+		str = " AND 'Request Type' CONTAINS IGNORING CASE 'Not_Offensive'";
+	}
+	else {	// closed and open are both false
+		str = " AND 'Request Type' DOES NOT CONTAIN 'Offensive'";
+	}
+	return str;
 
 }
 
