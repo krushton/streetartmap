@@ -1,5 +1,5 @@
-//google.load('visualization', '1.0', {'packages':['corechart']});
-//google.setOnLoadCallback(drawChart);
+google.load('visualization', '1.0', {'packages':['corechart']});
+google.setOnLoadCallback(drawChart);
 var neighborhood;
 
 $(function(){

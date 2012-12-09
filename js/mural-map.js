@@ -1,4 +1,8 @@
 var layer;
+	var layer2011;
+	var trafficLayer = new google.maps.TrafficLayer();
+	var transitLayer = new google.maps.TransitLayer();
+	var bikeLayer = new google.maps.BicyclingLayer();
 
 var COLUMN_STYLES = {//fusion table styles limited to four per layer !? bizarre
         'Weighted_Income': [
@@ -84,6 +88,7 @@ $(document).ready(function() {
 
 function initializeMap() {
 
+
    // Create an array of styles.
   var styles = [
   {
@@ -155,21 +160,20 @@ function initializeMap() {
 	};
 	
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-  map.setOptions({styles: styles});
-
+  	map.setOptions({styles: styles});
+  
 	/*var kmlLayer = new google.maps.KmlLayer('http://ischool.berkeley.edu/~derek/SFWIbyZip.kml',
     {
         suppressInfoWindows: true,
         map: map
     });*/
 
-     var layer2011 = new google.maps.FusionTablesLayer({
+     layer2011 = new google.maps.FusionTablesLayer({
           query: {
             select: 'geometry', 
             from: '1yeV1PIUk5ByXuJEz_jHKDGHfL7bB_57vnhr8kpY',
           	where: "Year = 2011"
           },
-          map: map,
           suppressInfoWindows: false,
           /*styles: [{
                 polygonOptions: {
@@ -221,9 +225,11 @@ function initializeMap() {
           query: {
             select: 'Address',
             from: '1i5AvxZ-dOotZOtFu_LWD_l3d3qOw6GvrnVYo63s'
-          },
-          map: map
-        });
+          }
+
+	 });  
+	 layer.setMap(map);
+
 
         // $.ajax({
         //   url: 'https://www.googleapis.com/fusiontables/v1/tables/1yeV1PIUk5ByXuJEz_jHKDGHfL7bB_57vnhr8kpY/columns/geometry',
@@ -309,6 +315,53 @@ function updateMapCanvas(){
 	}
 }
 
+function clickBikes(){
+
+	if ($('#bicycles-button').is(':checked') == false ){
+		bikeLayer.setMap(map);
+	}
+
+	else {
+		bikeLayer.setMap();
+	}
+	updateMapCanvas();	
+}
+
+function clickTraffic(){
+
+	if ($('#traffic-button').is(':checked') == false ){
+		trafficLayer.setMap(map);
+	}
+
+	else {
+		trafficLayer.setMap();
+	}
+	updateMapCanvas();	
+}
+
+function clickTransit(){
+
+	if ($('#public-transportation-button').is(':checked') == false ){
+		transitLayer.setMap(map);
+	}
+
+	else {
+		transitLayer.setMap();
+	}
+	updateMapCanvas();
+}
+
+function clickIncome(){
+
+	if ($('#income-button').is(':checked') == false ){
+		layer2011.setMap(map);
+	}
+
+	else {
+		layer2011.setMap();
+	}
+	updateMapCanvas();
+}
 // Gets state of slider. Returns a string to append to database query.
 function getSliderState(){
 	var str;
