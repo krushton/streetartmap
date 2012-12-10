@@ -70,7 +70,6 @@ $(document).ready(function() {
   loadMuralData();
   loadUserData();
 
-
 	/*             EVENT HANDLERS                  */
 	$('#hide-sidebar').bind('click', function() {
 		console.log('click');
@@ -396,8 +395,6 @@ function getSliderState(){
 	var end_time = $('#end-date').datepicker('getDate');
 	start_time = $.datepicker.formatDate( 'M dd, yy', start_time );
 	end_time = $.datepicker.formatDate( 'M dd, yy', end_time );
-	console.log(start_time);
-	console.log(end_time);
 
 	str = "Opened >= '"+ start_time + "' AND Opened <= '"+ end_time + "'";
 	return str;
