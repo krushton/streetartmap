@@ -3,6 +3,7 @@ var layer;
 	var trafficLayer = new google.maps.TrafficLayer();
 	var transitLayer = new google.maps.TransitLayer();
 	var bikeLayer = new google.maps.BicyclingLayer();
+	var muralMarkers = [];
 
 var COLUMN_STYLES = {//fusion table styles limited to four per layer !? bizarre
         'Weighted_Income': [
@@ -421,7 +422,22 @@ function getOffensive(){
 	return str;
 
 }
+// murals is clicked. hide or show all mural markers
+function clickMurals(){
+	if ($('#murals-button').is(':checked') == false ){
+		// display mural points
+		for ( var i = 0; i < muralMarkers.length; i++){
+			muralMarkers[i].setMap(null);
+		}
+	}
 
+	else {
+		// remove mural points
+		for ( var i = 0; i < muralMarkers.length; i++){
+			muralMarkers[i].setMap(null);
+		}
+	}
+}
 function loadMuralData() {
 	$.ajax({
 		url : './murs.json',
@@ -457,16 +473,17 @@ function loadMuralData() {
 
  				 })(marker));
 				
-        google.maps.event.addListener(marker, 'keydown', (function(marker) {
-            return function() {
-              infowindow.close();
-            }
+        		google.maps.event.addListener(marker, 'keydown', (function(marker) {
+            			return function() {
+              			infowindow.close();
+            		}
+         		})(marker));
 
-         })(marker));
-			}
+			muralMarkers.push(marker);
+			} // end of for
 			
-      	}
-	})
+      	} // end of success
+	}) // end of ajax
 }
 
   function applyStyle(map, layer, column) {
