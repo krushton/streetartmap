@@ -68,6 +68,7 @@ $(document).ready(function() {
 // google.setOnLoadCallback(drawChart);
 
   loadMuralData();
+  loadUserData();
 
 
 	/*             EVENT HANDLERS                  */
@@ -258,7 +259,7 @@ google.maps.event.addListener(layer, 'click', function(e) {
 
           // Change the content of the InfoWindow
   e.infoWindowHtml = e.infoWindowHtml + '<br>' + '<a href="claim.html?id=' + e.row['Case ID[1]'].value 
-  + "&point=" + point + '">Update</a>';
+  + "&point=" + point + '">Convert to Art</a>';
 });
 
 }
@@ -427,7 +428,7 @@ function clickMurals(){
 	if ($('#murals-button').is(':checked') == false ){
 		// display mural points
 		for ( var i = 0; i < muralMarkers.length; i++){
-			muralMarkers[i].setMap(null);
+			muralMarkers[i].setMap(map);
 		}
 	}
 
@@ -483,7 +484,65 @@ function loadMuralData() {
 			} // end of for
 			
       	} // end of success
-	}) // end of ajax
+	}); // end of ajax
+}
+
+function loadUserData() {
+  $.ajax({
+    url : './userdata.json',
+    type: 'get',
+    format: 'json',
+    success: function(data) {
+
+      for (var i = 0; i < data.length; i++) {
+        var content = '<div class="userwindow">';
+
+        if (data[i].title) {
+            content += '<h2>' + data[i].title + '</h2>';
+        } 
+
+        content += '<img style="width:220px" src="images/' + data[i].url + '" alt="graffiti image">';
+
+        if (data[i].description) {
+          content += '<p><em>Description:</em> ' + data[i].description + '</p>';
+        }
+        if (data[i].name){
+          content += '<p><em>Artist:</em> ' + data[i].name + '</p>';
+        }
+        content += '</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+                content: content
+        });
+
+        var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(data[i].lat,data[i].lon),
+                map: map,
+                icon: "green-dot.png",
+                title: data[i].title,
+                content: content
+        });
+
+         google.maps.event.addListener(marker, 'click', (function(marker) {
+            return function() {
+              infowindow.setContent(marker.content);
+              infowindow.open(map, marker);
+            }
+
+         })(marker));
+        
+            google.maps.event.addListener(marker, 'keydown', (function(marker) {
+                  return function() {
+                    infowindow.close();
+                }
+            })(marker));
+
+      muralMarkers.push(marker);
+      } // end of for
+      
+        } // end of success
+  }); // end of ajax
+
 }
 
   function applyStyle(map, layer, column) {

@@ -54,6 +54,12 @@ a.button {
 	overflow: hidden;
 }
 
+.userwindow {
+	width:320px;
+	height:420px;
+	overflow:scroll;
+}
+
 #wrapper {
 	position:absolute;
 	margin:3%;
@@ -150,6 +156,10 @@ clear: both;
 #uploadForm {
 	padding:30px;
 }  
+
+#submitMessage {
+	display:none;
+}
 
 .color {
 height: 12px;
