@@ -165,7 +165,7 @@ function initializeMap() {
         draggable: false,
         //scrollwheel: false,
         disableDoubleClickZoom: true,
-        styles: [{markerOptions: {fillColor: '#00FF00'}}]
+        styles: [{markerOptions: {fillColor: '#00FF00'}}],
 
         zoomControl: false,
         panControl: true,
@@ -250,10 +250,8 @@ function initializeMap() {
           map: map  
         });*/
 
-          }
 
-	 });  
-	 layer.setMap(map);
+	 //layer.setMap(map);
 
 
         // $.ajax({
@@ -317,7 +315,7 @@ function displayGraffitiPoints(){
 	// select points from database and display in Fusion Tables Layer
 	  layer.setOptions({
           query: {
-            select: 'Address',
+            select: 'Point',
             from: '1EeV1qsCI_h6eB5DdtPDPdPo8UpivpWAUTX5E6Ko',
 		where: query
           },
@@ -333,7 +331,7 @@ function hideGraffitiPoints(){
 	// display an empty layer
 	layer.setOptions({
 		query: {
-			select: 'Address',
+			select: 'Point',
 			from: '1EeV1qsCI_h6eB5DdtPDPdPo8UpivpWAUTX5E6Ko',
 			where: empty_query
 			},
