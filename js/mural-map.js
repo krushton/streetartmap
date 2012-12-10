@@ -82,6 +82,7 @@ $(document).ready(function() {
 			$(this).data('hidden', 'true');
 		}
 	});
+
 	$('#date-slider').bind("slidestop", updateMapCanvas);
 
 });
@@ -150,11 +151,11 @@ function initializeMap() {
 			  center: new google.maps.LatLng(37.775174,-122.419186),
 			  mapTypeId: google.maps.MapTypeId.ROADMAP,
         zoomControl: false,
-        panControl: false,
-        navigationControl: false,
+        panControl: true,
+        navigationControl: true,
         mapTypeControl: false,
         scaleControl: false,
-        draggable: false,
+        draggable: true,
         scrollwheel: false,
         disableDoubleClickZoom: true
 	};
@@ -251,7 +252,12 @@ function initializeMap() {
 google.maps.event.addListener(layer, 'click', function(e) {
 
   neighborhood = e.row['Neighborhood'].value;
+  point = e.row['Point'].value;
   drawChart();
+
+          // Change the content of the InfoWindow
+  e.infoWindowHtml = e.infoWindowHtml + '<br>' + '<a href="claim.html?id=' + e.row['Case ID[1]'].value 
+  + "&point=" + point + '">Update</a>';
 });
 
 }
@@ -438,17 +444,25 @@ function loadMuralData() {
 		        var marker = new google.maps.Marker({
 		            position: new google.maps.LatLng(murs[i].lat,murs[i].lon),
 		            map: map,
+                icon: "blue-dot.png",
 		            title: murs[i].ttl,
 		            content: content
 		        });
 
-		         google.maps.event.addListener(marker, 'click', (function(marker) {
+		     google.maps.event.addListener(marker, 'click', (function(marker) {
 				    return function() {
 				      infowindow.setContent(marker.content);
 			      	infowindow.open(map, marker);
 				    }
+
  				 })(marker));
 				
+        google.maps.event.addListener(marker, 'keydown', (function(marker) {
+            return function() {
+              infowindow.close();
+            }
+
+         })(marker));
 			}
 			
       	}
