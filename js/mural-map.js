@@ -86,6 +86,10 @@ $(document).ready(function() {
 
 	$('#date-slider').bind("slidestop", updateMapCanvas);
 
+  $('#close').click(function()  {
+    $(this).parent().hide();
+  });
+
 });
 
 function initializeMap() {
@@ -151,7 +155,7 @@ function initializeMap() {
         minZoom: 3,
 			  zoom: 13,
         disableDefaultUI: true,
-			  center: new google.maps.LatLng(37.775174,-122.419186),
+			  center: new google.maps.LatLng(37.75262863,-122.438627968),
 			  mapTypeId: google.maps.MapTypeId.ROADMAP,
 
         zoomControl: true,

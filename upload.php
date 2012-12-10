@@ -24,10 +24,9 @@ foreach ($_FILES as $file) {
  preg_replace('/[^a-zA-Z0-9_ %\[\]\.\(\)%&-]/s', '', $String);
 
 if (move_uploaded_file($_FILES['fileselect']['tmp_name'], $filepath)) {
-	$coords = str_replace(array( '(', ')' ), '', $_REQUEST['coords']);
-	$coords = explode(',%20', $coords);
-	$lat = $coords[0];
-	$long = $coords[1];
+	$lat = $_REQUEST['lat'];
+	$long = $_REQUEST['long'];
+	print($lat . " " . $long);
 	
 	$obj = array('url' => $path, 'id' => $_REQUEST['caseid'], 'title' => $_REQUEST['title'],
 		'lat' => $lat, 'lon' => $long, 'description' => $_REQUEST['description'], 
@@ -39,8 +38,8 @@ if (move_uploaded_file($_FILES['fileselect']['tmp_name'], $filepath)) {
 	$data[] = $obj;
 	file_put_contents('userdata.json', json_encode($data));
 
-	//header("Location: http://krushton.com/streetartmap/map.html");
-	header("Location: http://localhost:8888/streetartmap/map.html");
+	header("Location: http://krushton.com/streetartmap/map.html");
+	//header("Location: http://localhost:8888/streetartmap/map.html");
 } else {
 	echo('Something went wrong.');
 }
