@@ -89,7 +89,8 @@ a.button {
 	bottom: 140px;
 	right: 11px;
 	background-color: white;
-	width: 160px;
+	width: 150px;
+	padding: 5px;
 }
 
 #sidebar-header {
