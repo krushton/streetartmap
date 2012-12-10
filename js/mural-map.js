@@ -87,6 +87,10 @@ $(document).ready(function() {
 
 	$('#date-slider').bind("slidestop", updateMapCanvas);
 
+  $('#close').click(function()  {
+    $(this).parent().hide();
+  });
+
 });
 
 function initializeMap() {
