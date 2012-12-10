@@ -39,8 +39,8 @@ if (move_uploaded_file($_FILES['fileselect']['tmp_name'], $filepath)) {
 	$data[] = $obj;
 	file_put_contents('userdata.json', json_encode($data));
 
-	header("Location: http://krushton.com/streetartmap/map.html");
-
+	//header("Location: http://krushton.com/streetartmap/map.html");
+	header("Location: http://localhost:8888/streetartmap/map.html");
 } else {
 	echo('Something went wrong.');
 }

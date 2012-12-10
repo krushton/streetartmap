@@ -1,11 +1,9 @@
-
-
-var layer;
-	var layer2011;
-	var trafficLayer = new google.maps.TrafficLayer();
-	var transitLayer = new google.maps.TransitLayer();
-	var bikeLayer = new google.maps.BicyclingLayer();
-	var muralMarkers = [];
+var layer2;
+var layer2011;
+var trafficLayer = new google.maps.TrafficLayer();
+var transitLayer = new google.maps.TransitLayer();
+var bikeLayer = new google.maps.BicyclingLayer();
+var muralMarkers = [];
 
 var COLUMN_STYLES = {//fusion table styles limited to four per layer !? bizarre
         'Weighted_Income': [
@@ -157,23 +155,13 @@ function initializeMap() {
 			  center: new google.maps.LatLng(37.775174,-122.419186),
 			  mapTypeId: google.maps.MapTypeId.ROADMAP,
 
-        //zoomControl: false,
-        //panControl: false,
-        navigationControl: false,
-        mapTypeControl: false,
-        scaleControl: false,
-        draggable: false,
-        //scrollwheel: false,
-        disableDoubleClickZoom: true,
-        styles: [{markerOptions: {fillColor: '#00FF00'}}],
-
-        zoomControl: false,
+        zoomControl: true,
         panControl: true,
         navigationControl: true,
         mapTypeControl: false,
         scaleControl: false,
         draggable: true,
-        scrollwheel: false,
+        scrollwheel: true,
         disableDoubleClickZoom: true
 
 	};
@@ -193,7 +181,7 @@ function initializeMap() {
             from: '1yeV1PIUk5ByXuJEz_jHKDGHfL7bB_57vnhr8kpY',
           	where: "Year = 2011"
           },
-          suppressInfoWindows: false,
+          suppressInfoWindows: true,
           /*styles: [{
                 polygonOptions: {
                     strokeColor: "#ffffff",
@@ -270,40 +258,24 @@ function initializeMap() {
           query: {
             select: 'Point',
             from: '1EeV1qsCI_h6eB5DdtPDPdPo8UpivpWAUTX5E6Ko'
-          },
-         styles: [{
-            markerOptions: {
-              fillColor: "#00FF00"
-              //fillOpacity: 0.3
-         }}]
-       //   map: map  
+          }
         });
         layer2.setMap(map);
 
-        var ftID = '1EeV1qsCI_h6eB5DdtPDPdPo8UpivpWAUTX5E6Ko';
-        var query = "SELECT Point FROM "+ftID+" WHERE Neighborhood = 'Outer Richmond'";
-        var queryText = encodeURIComponent(query);
-        var query = new google.visualization.Query('http://www.google.com/fusiontables/gvizdata?tq=' + queryText);
-        console.log(query);
-        var coordinate = new google.maps.LatLng(40, -90);                                                                                                                                                                                                       
-        var polygon = new google.maps.Polygon([], "#000000", 1, 1, "#336699", 0.3);
-        var isWithinPolygon = polygon.containsLatLng(coordinate);
 
-
-        console.log(isWithinPolygon);
 
 //when user clicks on a marker, draw chart based on the neighborhood the marker is in 
-google.maps.event.addListener(layer, 'click', function(e) {
+google.maps.event.addListener(layer2, 'click', function(e) {
 
   neighborhood = e.row['Neighborhood'].value;
   point = e.row['Point'].value;
-  drawChart();
+  //drawChart();
 
           // Change the content of the InfoWindow
   e.infoWindowHtml = e.infoWindowHtml + '<br>' + '<a href="claim.html?id=' + e.row['Case ID[1]'].value 
   + "&point=" + point + '">Convert to Art</a>';
-});
 
+});
 
 }
 
@@ -313,7 +285,7 @@ function displayGraffitiPoints(){
 	console.log(query);
 
 	// select points from database and display in Fusion Tables Layer
-	  layer.setOptions({
+	  layer2.setOptions({
           query: {
             select: 'Point',
             from: '1EeV1qsCI_h6eB5DdtPDPdPo8UpivpWAUTX5E6Ko',
@@ -326,10 +298,10 @@ function displayGraffitiPoints(){
 }
 function hideGraffitiPoints(){
 	var empty_query = getSliderState() + " AND Status = 'NONE'";
-	console.log(empty_query);
+	//console.log(empty_query);
 
 	// display an empty layer
-	layer.setOptions({
+	layer2.setOptions({
 		query: {
 			select: 'Point',
 			from: '1EeV1qsCI_h6eB5DdtPDPdPo8UpivpWAUTX5E6Ko',
@@ -404,14 +376,17 @@ function clickTransit(){
 
 function clickIncome(){
 
+  //console.log($('#income-button'));
 	if ($('#income-button').is(':checked') == false ){
 		layer2011.setMap(map);
+    console.log(layer2011);
 	}
-
 	else {
-		layer2011.setMap();
+		layer2011.setMap(null);
+    console.log(layer2011);
 	}
 	updateMapCanvas();
+  //console.log('should show income underlayer');
 }
 // Gets state of slider. Returns a string to append to database query.
 function getSliderState(){
