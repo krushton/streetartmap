@@ -5,6 +5,7 @@ var layer;
 	var trafficLayer = new google.maps.TrafficLayer();
 	var transitLayer = new google.maps.TransitLayer();
 	var bikeLayer = new google.maps.BicyclingLayer();
+	var muralMarkers = [];
 
 var COLUMN_STYLES = {//fusion table styles limited to four per layer !? bizarre
         'Weighted_Income': [
@@ -69,6 +70,7 @@ $(document).ready(function() {
 // google.setOnLoadCallback(drawChart);
 
   loadMuralData();
+  loadUserData();
 
 
 	/*             EVENT HANDLERS                  */
@@ -84,6 +86,7 @@ $(document).ready(function() {
 			$(this).data('hidden', 'true');
 		}
 	});
+
 	$('#date-slider').bind("slidestop", updateMapCanvas);
 
 });
@@ -153,6 +156,7 @@ function initializeMap() {
         disableDefaultUI: true,
 			  center: new google.maps.LatLng(37.775174,-122.419186),
 			  mapTypeId: google.maps.MapTypeId.ROADMAP,
+
         //zoomControl: false,
         //panControl: false,
         navigationControl: false,
@@ -162,6 +166,16 @@ function initializeMap() {
         //scrollwheel: false,
         disableDoubleClickZoom: true,
         styles: [{markerOptions: {fillColor: '#00FF00'}}]
+
+        zoomControl: false,
+        panControl: true,
+        navigationControl: true,
+        mapTypeControl: false,
+        scaleControl: false,
+        draggable: true,
+        scrollwheel: false,
+        disableDoubleClickZoom: true
+
 	};
 	
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
@@ -284,7 +298,12 @@ function initializeMap() {
 google.maps.event.addListener(layer, 'click', function(e) {
 
   neighborhood = e.row['Neighborhood'].value;
+  point = e.row['Point'].value;
   drawChart();
+
+          // Change the content of the InfoWindow
+  e.infoWindowHtml = e.infoWindowHtml + '<br>' + '<a href="claim.html?id=' + e.row['Case ID[1]'].value 
+  + "&point=" + point + '">Convert to Art</a>';
 });
 
 
@@ -449,7 +468,22 @@ function getOffensive(){
 	return str;
 
 }
+// murals is clicked. hide or show all mural markers
+function clickMurals(){
+	if ($('#murals-button').is(':checked') == false ){
+		// display mural points
+		for ( var i = 0; i < muralMarkers.length; i++){
+			muralMarkers[i].setMap(map);
+		}
+	}
 
+	else {
+		// remove mural points
+		for ( var i = 0; i < muralMarkers.length; i++){
+			muralMarkers[i].setMap(null);
+		}
+	}
+}
 function loadMuralData() {
 	$.ajax({
 		url : './murs.json',
@@ -472,21 +506,88 @@ function loadMuralData() {
 		        var marker = new google.maps.Marker({
 		            position: new google.maps.LatLng(murs[i].lat,murs[i].lon),
 		            map: map,
+                icon: "blue-dot.png",
 		            title: murs[i].ttl,
 		            content: content
 		        });
 
-		         google.maps.event.addListener(marker, 'click', (function(marker) {
+		     google.maps.event.addListener(marker, 'click', (function(marker) {
 				    return function() {
 				      infowindow.setContent(marker.content);
 			      	infowindow.open(map, marker);
 				    }
+
  				 })(marker));
 				
-			}
+        		google.maps.event.addListener(marker, 'keydown', (function(marker) {
+            			return function() {
+              			infowindow.close();
+            		}
+         		})(marker));
+
+			muralMarkers.push(marker);
+			} // end of for
 			
-      	}
-	})
+      	} // end of success
+	}); // end of ajax
+}
+
+function loadUserData() {
+  $.ajax({
+    url : './userdata.json',
+    type: 'get',
+    format: 'json',
+    success: function(data) {
+
+      for (var i = 0; i < data.length; i++) {
+        var content = '<div class="userwindow">';
+
+        if (data[i].title) {
+            content += '<h2>' + data[i].title + '</h2>';
+        } 
+
+        content += '<img style="width:220px" src="images/' + data[i].url + '" alt="graffiti image">';
+
+        if (data[i].description) {
+          content += '<p><em>Description:</em> ' + data[i].description + '</p>';
+        }
+        if (data[i].name){
+          content += '<p><em>Artist:</em> ' + data[i].name + '</p>';
+        }
+        content += '</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+                content: content
+        });
+
+        var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(data[i].lat,data[i].lon),
+                map: map,
+                icon: "green-dot.png",
+                title: data[i].title,
+                content: content
+        });
+
+         google.maps.event.addListener(marker, 'click', (function(marker) {
+            return function() {
+              infowindow.setContent(marker.content);
+              infowindow.open(map, marker);
+            }
+
+         })(marker));
+        
+            google.maps.event.addListener(marker, 'keydown', (function(marker) {
+                  return function() {
+                    infowindow.close();
+                }
+            })(marker));
+
+      muralMarkers.push(marker);
+      } // end of for
+      
+        } // end of success
+  }); // end of ajax
+
 }
 
   function applyStyle(map, layer, column) {
