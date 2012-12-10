@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="css/filterStyle.css" type="text/css">
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
   <link rel="stylesheet" href="https://developers.google.com/maps/documentation/javascript/examples/default.css" />
- 
+
 </head>
 
 <body>
@@ -34,7 +34,14 @@
       </div>
     </header>
 
+
     <div id="main">
+
+       <div id="floatingkey">
+          <div><img class="icon" src='red-dot.png'> Graffiti</div>
+          <div><img class="icon" src="blue-dot.png"> Murals</div>
+          <div><img class="icon" src="green-dot.png"> User Submissions</div>
+        </div>
         <div id="map-canvas">
         </div>
       </div> 
@@ -55,14 +62,14 @@
                 <input type="checkbox" checked="checked" id="murals-button"></input>
                 <label for="murals-button" onclick="clickMurals()">Street Art</label>
                 <input type="checkbox" id="income-button"></input>
-		<label for="income-button" onclick="clickIncome()">Income</label>
+		            <label for="income-button" onclick="clickIncome()">Income</label>
                 <input type="checkbox" id="public-transportation-button"></input>
                 <label for="public-transportation-button" onclick="clickTransit()" >Public Transportation</label>
                 <input type="checkbox" id="traffic-button"></input>
                 <label for="traffic-button" onclick="clickTraffic()">Traffic</label>
                 <input type="checkbox" id="bicycles-button" ></input>
                 <label for="bicycles-button" onclick="clickBikes()">Bicycles</label>
-	</div>
+	       </div>
 
           <div id="reported-time">
             <div class="filter-option-header">
@@ -126,10 +133,10 @@
           <div id="income-year-button">
             <input type="radio" id="income-year1" name="income-year"></input>
             <label for="income-year1">2011</label>
-            <input type="radio" id="income-year2" name="income-year"></input>
+            <!--<input type="radio" id="income-year2" name="income-year"></input>
             <label for="income-year2">2010</label>
             <input type="radio" id="income-year3" name="income-year"></input>
-            <label for="income-year3">2009</label>
+            <label for="income-year3">2009</label>-->
           </div>
         </div>
       </div>

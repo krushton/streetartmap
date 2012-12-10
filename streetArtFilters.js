@@ -1,5 +1,5 @@
-google.load('visualization', '1.0', {'packages':['corechart']});
-google.setOnLoadCallback(drawChart);
+//google.load('visualization', '1.0', {'packages':['corechart']});
+//google.setOnLoadCallback(drawChart);
 var neighborhood;
 
 $(function(){
@@ -83,12 +83,12 @@ $(function(){
 	$("#mural-button").click(function(){
 		$("#mural-button").toggleClass("selector-button-clicked");
 		console.log("clicked");
-		drawChart();
+		//rawChart();
 	});
 		
 	$("#income-button").click(function(){
 		$("#income-button").toggleClass("selector-button-clicked");
-		console.log($("#income-button").attr("class"));
+		//console.log($("#income-button").attr("class"));
 
 		//if income button is clicked, default the year to 2011	
 		if($("#income-button").attr("class") == "selector-button selector-button-clicked"){
