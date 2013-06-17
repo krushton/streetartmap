@@ -14,10 +14,10 @@ body {
 header {
 	background-color:#495e6b;
 	height:20%;
-	padding:10px;
 	color:#FFF;
 	font-size:20px;
-	font-family: 'Wallpoet';
+	position:relative;
+	z-index:5;
 	/* font-family:'Londrina Outline'; */
 	/* font-family:'Bangers'; */
 	/* font-family:'Audiowide'; */
@@ -25,9 +25,12 @@ header {
 }
 
 header h1 {
+	font-family: 'Wallpoet';
 	font-size:48px;
-	line-height:30px;
-	margin-bottom:0px;
+	line-height:0px;
+	display:inline-block;
+	margin-left:10px;
+
 }
 
 iframe {
@@ -77,7 +80,7 @@ a.button {
 #sidebar {
 	width:25%;
 	position:absolute;
-	top:31px;
+	top:52px;
 	right:0px;
 	z-index:4;
 	background-color:#ECF1EF;
@@ -93,19 +96,7 @@ a.button {
 	padding: 5px;
 }
 
-#sidebar-header {
-	background-color:#495e6b;
-	width:90%;
-	height:21px;
-	color:#FFF;
-	padding:5%;
-}
 
-#sidebar-header h1 {
-	line-height:0;
-	float:right;
-	margin-right:70px;
-}
 
 #filter-content {
 	padding:0px 15px 30px 15px;
@@ -116,14 +107,14 @@ a.button {
 #hide-sidebar {
 	position:absolute;
 	right:10px;
-	top:15px;
+	top:20px;
 	cursor:pointer;
 }
 
 #map-canvas {
 	width:100%;
 	margin: 0 auto;
-	height:1000px;
+	height:1000px !important;
 	border:5% solid #FFF;
 }
 
